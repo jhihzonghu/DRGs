@@ -10,7 +10,7 @@ public class Patients implements Writable {
     private String BeforeOPDay, AfterOPDay,TotalHostipalDay,IsCancer,IsSpecialOP,SpecialOPC,OPMaterial;
     private String SelfPay,HealthyCare,SelfPayClass, TotalSelfPay, TotalHealthyCare ; 
     private String Value ;
-	@Override
+	
 	public void readFields(DataInput input) throws IOException {
 		// TODO Auto-generated method stub
 		BeforeOPDay = input.readUTF();
@@ -27,7 +27,7 @@ public class Patients implements Writable {
 		SelfPayClass = input.readUTF();
 	}
 
-	@Override
+
 	public void write(DataOutput output) throws IOException {
 		// TODO Auto-generated method stub
 		output.writeUTF(BeforeOPDay);

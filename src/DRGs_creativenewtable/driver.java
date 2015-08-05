@@ -28,19 +28,29 @@ public class driver {
 		Configuration conf = new Configuration();
 		long StartTime = System.currentTimeMillis();
 		long AverageTime = 0;
-		Job job = Job.getInstance(conf, "xxx");
+//		conf.set("mapreduce.jobtracker.address", "local");
+//		//conf.set("mapred.child.java.opts", "-Xmx200m");
+//		conf.set("mapred.job.tracker", "local");
+//		//conf.set("mapreduce.task.io.sort.mb", "100");
+//		conf.set("fs.defaultFS","file:///");
+//		conf.set("fs.default.name","file:///");
+//		conf.set("dfs.replication", "1");
+		Job job = new Job(conf, "xxx");
 		job.setJarByClass(driver.class);
 		job.setMapperClass(ParserPatientsDataMapper.class);
 		job.setReducerClass(ParserPatientsDataReducer.class);
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(Patients.class);
-	//	job.setCombinerClass(reducer.class);
+//		job.setCombinerClass(reducer.class);
 		// TODO: specify input and output DIRECTORIES (not files)
 		FileInputFormat.setInputPaths(job, new Path(
-				"hdfs://master:9000/DRGs_InputData/Yearfile.csv"));
+				"hdfs://hadoop01:9000/healthycarebill/3YearFile.csv"));
 		FileOutputFormat.setOutputPath(job, new Path(
-				"hdfs://master:9000/DRGs_Demo/YearFile_CoVersion"));
-
+				"hdfs://hadoop01:9000/DRGs_output"));
+//		FileInputFormat.setInputPaths(job, new Path(
+//				"/home/jhihzonghu/3YearFile.csv"));
+//		FileOutputFormat.setOutputPath(job, new Path(
+//				"/home/jhihzonghu/Output"));
 		job.waitForCompletion(true);
 		long ProcessTime = System.currentTimeMillis() - StartTime;
 		AverageTime += ProcessTime;

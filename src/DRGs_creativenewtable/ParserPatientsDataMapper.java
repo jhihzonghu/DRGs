@@ -76,7 +76,7 @@ public class ParserPatientsDataMapper extends
 	private void AccountingCatTotal() {
 		// TODO Auto-generated method stub
 		int CatIndex;
-		if (isNumeric(SpiltThePatients[11].trim())) {
+		if (isNumeric(SpiltThePatients[11].trim())&&(!SpiltThePatients[11].equals(""))) {
 			// System.out.println(inputLine[11]);
 			CatIndex = Integer.valueOf(SpiltThePatients[11].trim());
 			if (isNumeric(SpiltThePatients[11].trim())
